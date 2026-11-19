@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Discuter avec l’assistant de Bilel Zidi</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1a1d23;--muted:#667085;--accent:#1f5eff;--accent-t:#fff;--bubble:#eef1f6;--border:#dfe3ea;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12141a;--card:#1b1e26;--text:#e8eaf0;--muted:#9aa3b2;--accent:#6b93ff;--accent-t:#0b1020;--bubble:#262a35;--border:#2c313d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12141a;--card:#1b1e26;--text:#e8eaf0;--muted:#9aa3b2;--accent:#6b93ff;--accent-t:#0b1020;--bubble:#262a35;--border:#2c313d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:16px;display:flex;flex-direction:column;min-height:100vh}
+header h1{font-size:1.3rem;margin:0}
+header p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.badge{display:inline-block;margin-top:10px;font-size:.78rem;padding:3px 10px;border-radius:99px;background:var(--bubble);color:var(--muted)}
+#chat{flex:1;margin:16px 0;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:10px 14px;border-radius:14px;white-space:pre-wrap;word-wrap:break-word;background:var(--bubble)}
+.msg.me{align-self:flex-end;background:var(--accent);color:var(--accent-t)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chips button{border:1px solid var(--border);background:var(--card);color:var(--text);padding:7px 12px;border-radius:99px;font:inherit;font-size:.85rem;cursor:pointer}
+.row{display:flex;gap:8px;position:sticky;bottom:0;background:var(--bg);padding:8px 0}
+input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit}
+.send{border:0;background:var(--accent);color:var(--accent-t);padding:0 18px;border-radius:12px;font:inherit;font-weight:600;cursor:pointer}
+.send:disabled{opacity:.5;cursor:default}
+.note{color:var(--muted);font-size:.78rem;text-align:center;margin:4px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>Bilel Zidi · Assistant IA</h1>
+<p>Posez vos questions sur le parcours, les projets et la disponibilité de Bilel.</p>
+<span class="badge">🤖 Assistant IA, pas Bilel en personne</span>
+</header>
+<div id="chat"></div>
+<div class="chips" id="chips"></div>
+<div class="row">
+<input id="q" placeholder="Votre question…" autocomplete="off">
+<button class="send" id="go">Envoyer</button>
+</div>
+<p class="note">Les réponses reposent uniquement sur le CV de Bilel. Pour le reste : zidibilelpro@gmail.com</p>
+</div>
+<script>
+const PROFILE = `
+Nom : ZIDI Bilel. Élève ingénieur en mécatronique (conception mécanique & robotique).
+Contact : zidibilelpro@gmail.com, +216 97 705 417, Tunisie, linkedin.com/in/bilel-zidi-119b4833b
+Langues : français C1, anglais B1.
+Recherche : stage PFE en conception mécanique et intégration de systèmes robotisés, prêt à la relocation en France.
+Profil : a réalisé une chaise roulante verticalisateur innovante, solution nouvelle en Tunisie ; l’a étudiée, conçue et fabriquée (prototype), avec la volonté de développer des solutions technologiques à fort impact social.
+Compétences :
+- Conception & CAO : SolidWorks (certifié CSWA et CSWP), SolidWorks Simulation (FEM), RDM6, Ultimaker Cura
+- Électronique & embarqué : Proteus, Arduino, ESP32, STM32
+- Programmation : ROS 2, Python
+- Mesure : multimètre
+Expériences :
+- Stage ingénieur 2e année, Enova Robotics (07/2026 – 09/2026) : en 1 mois, étude et conception d’une plateforme mobile sous SolidWorks ; conception et simulation du circuit électrique sous Proteus ; intégration d’un système d’arrêt d’urgence conforme à la norme ISO 13850 ; analyse et visualisation de données IMU en temps réel avec rqt_plot sous ROS 2 Humble.
+- Stage ingénieur 1re année, Enova Robotics (07/2025) : conception d’un châssis et d’un système de transmission pour un robot d’accueil autonome sous SolidWorks ; recherche et identification des composants électriques ; validation mécanique du prototype.
+- Stage technicien (PFE), 01/2024 – 06/2024 : en 3 mois, conception d’une chaise roulante verticalisateur innovante sous SolidWorks ; identification des composants électriques ; validation mécanique ; fabrication et assemblage du prototype en une semaine.
+- Stage technicien 2e année, Tach Machines (01/2023 – 02/2023) : fabrication de machines de pesage et d’ensachage (qualité et précision des assemblages) ; pièces cylindriques au tour parallèle, pièces prismatiques à la fraiseuse.
+Formation :
+- Cycle ingénieur en mécatronique, École Supérieure Privée d’Ingénieurs de Monastir, 2024 – 2027
+- Licence en génie mécanique, ISET de Ksar Hellal, 2021 – 2024
+Projets :
+- Robot autonome traceur K-VEKTOR (01/2026 – 06/2026) : robot autonome de marquage au sol sur ROS 2, conçu en équipe, de la conception mécanique à la simulation et la modélisation 3D.
+- Support smartphone (04/2026 – 05/2026) : conception SolidWorks, simulation FEM, simulation Cura dans le respect d’un poids maximal imposé.
+- Tige tournante (03/2026 – 05/2026) : mécanisme à tige tournante conçu, fabriqué et assemblé, intégré au ring, en travail collaboratif.
+- Bras bionique, projet de fin d’année (01/2025 – 06/2025) : modélisation et impression des composants, conception du circuit électrique, fabrication, assemblage et validation du prototype.
+`;
+const RULES = `Tu es l’assistant IA de Bilel Zidi et tu parles à des recruteurs. Réponds uniquement à partir du profil ci-dessous. Si l’information n’y figure pas (salaire, date de début exacte, avis personnel, etc.), dis clairement que tu ne sais pas et invite à contacter Bilel directement par e-mail ou téléphone. N’invente rien et n’embellis pas. Réponds dans la langue du recruteur (français ou anglais), avec des phrases simples et courtes, sur un ton curieux et enthousiaste. Maximum 2 ou 3 phrases : jamais de paragraphe, jamais de liste. Termine souvent par une petite question au recruteur pour montrer de la curiosité (par exemple sur son entreprise, ses projets ou le poste). Mets en avant la motivation de Bilel avec des faits concrets tirés du profil : sa volonté de créer des solutions à fort impact social (la chaise verticalisateur), sa disponibilité à la relocation en France, ses certifications SolidWorks CSWA et CSWP, et sa rapidité d’exécution (prototype fabriqué et assemblé en une semaine, plateforme mobile conçue en 1 mois). Sois chaleureux et positif, mais n’invente aucune motivation ni aucun fait absent du profil. Si on te demande son niveau d’anglais, réponds simplement B1, sans l’embellir ni le minimiser. La robotique est son point fort : mets-la en avant avec des preuves (Enova Robotics, robot K-VEKTOR, ROS 2, robot d’accueil autonome, plateforme mobile). Présente aussi sa double compétence : conception mécanique et électronique embarquée. Appuie chaque réponse sur un projet ou un stage précis. De temps en temps, propose une action simple : voir ses projets ou le contacter (zidibilelpro@gmail.com, +216 97 705 417). Tu ne connais ni ses dates de disponibilité exactes ni l’existence de vidéos de démonstration : ne les invente pas. Parle de Bilel à la troisième personne. Tu es une IA et tu ne te fais jamais passer pour Bilel. Ne mentionne jamais spontanément le nom du modèle ou de l’entreprise qui te fait fonctionner. Si on te demande quelle technologie ou quel modèle tu utilises, réponds simplement que tu es un assistant IA créé pour présenter Bilel et que tu n’as pas de détails à donner là-dessus, puis reviens à son profil. Ne prétends jamais que tu n’es pas une IA.`;
+
+const chat = document.getElementById("chat"), q = document.getElementById("q"), go = document.getElementById("go");
+const history = [];
+let busy = false, sample = null;
+
+function add(role, text){
+  const d = document.createElement("div");
+  d.className = "msg " + (role === "user" ? "me" : "");
+  d.textContent = text;
+  chat.appendChild(d);
+  d.scrollIntoView({block:"end",behavior:"smooth"});
+  return d;
+}
+add("assistant", "Bonjour ! Je suis l’assistant IA de Bilel. Bilel est un futur ingénieur en mécatronique, passionné de robotique et prêt à s’installer en France pour son stage PFE. Vous recrutez en conception mécanique ou en robotique ? Posez-moi vos questions !");
+
+["🤖 Ses projets de robotique","⚙️ Ses compétences en CAO et simulation","🏭 Son expérience chez Enova Robotics","📩 Comment le contacter ?"].forEach(t=>{
+  const b = document.createElement("button");
+  b.textContent = t;
+  b.onclick = () => { q.value = t; send(); };
+  document.getElementById("chips").appendChild(b);
+});
+
+async function send(){
+  const text = q.value.trim();
+  if(!text || busy) return;
+  busy = true; go.disabled = true; q.value = "";
+  document.getElementById("chips").style.display = "none";
+  add("user", text);
+  history.push({role:"user", content:text});
+  const bubble = add("assistant", "…");
+  try{
+    if(!sample){
+      sample = await claude.use("sample");
+    }
+    if(!sample) throw {code:"unavailable"};
+    const transcript = history.map(m => (m.role === "user" ? "Recruteur : " : "Assistant : ") + m.content).join("\n");
+    const prompt = RULES + "\n\nPROFIL DE BILEL :\n" + PROFILE + "\n\nCONVERSATION :\n" + transcript + "\n\nRéponds maintenant au dernier message du recruteur.";
+    const res = await sample(prompt, {cache:false, onText:({text}) => { bubble.textContent = text; }});
+    bubble.textContent = res.text;
+    history.push({role:"assistant", content:res.text});
+  }catch(e){
+    const c = e && e.code;
+    bubble.textContent = c === "rate_limited" ? "Trop de messages d’un coup, réessayez dans un instant."
+      : "L’assistant n’est pas disponible pour le moment. Vous pouvez écrire directement à Bilel : zidibilelpro@gmail.com";
+    history.pop();
+  }
+  busy = false; go.disabled = false; q.focus();
+}
+go.onclick = send;
+q.addEventListener("keydown", e => { if(e.key === "Enter") send(); });
+</script>
+</body>
+</html>
