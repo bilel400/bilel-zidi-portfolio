@@ -948,20 +948,28 @@ J'ai étudié, conçu et fabriqué le prototype , avec la volonté de développe
 
       status.textContent = "";
 
-    } catch (error) {
-      addMessage(
-        "assistant",
-        "Désolé, une erreur est survenue. Veuillez réessayer."
-      );
+ 
+} catch (error) {
+  const diagnostic = error instanceof Error
+    ? error.message
+    : String(error);
 
-      status.textContent = error.message;
-    } finally {
-      sending = false;
-      input.disabled = false;
-      sendButton.disabled = false;
-      sendButton.textContent = "Envoyer";
-      input.focus();
-    }
+  addMessage(
+    "assistant",
+    "Erreur technique : " + diagnostic
+  );
+
+  status.textContent = "Diagnostic : " + diagnostic;
+
+  console.error("Erreur assistant Gemini :", error);
+} finally {
+  sending = false;
+  input.disabled = false;
+  sendButton.disabled = false;
+  sendButton.textContent = "Envoyer";
+  input.focus();
+}
+
   });
 })();
 </script>
