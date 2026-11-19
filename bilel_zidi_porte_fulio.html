@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIDI Bilel - Élève Ingénieur en Mécatronique</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        engineerPrimary: '#0f172a', // Bleu ardoise très foncé (texte principal)
+                        engineerBlue: '#0284c7',    // Bleu technique / corporate
+                        engineerOrange: '#ea580c',  // Orange technique / accent
+                        engineerBg: '#f8fafc',      // Fond général très légèrement grisé/blanc
+                        engineerCard: '#ffffff',    // Fond des cartes blanc pur
+                        engineerBorder: '#e2e8f0',  // Bordures subtiles
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .tech-grid-light {
+            background-image: radial-gradient(rgba(2, 132, 199, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .gallery-trigger { cursor: zoom-in; }
+        #lightbox { transition: opacity 0.2s ease; }
+    </style>
+</head>
+<body class="bg-engineerBg text-engineerPrimary antialiased selection:bg-engineerBlue selection:text-white tech-grid-light">
+
+    <!-- Barre de Navigation Supérieure (Sticky) -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-md">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-extrabold text-white text-xl tracking-wider flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-engineerOrange animate-pulse"></span>
+                ZIDI<span class="text-engineerBlue">Bilel</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+                <a href="#profil" class="hover:text-engineerBlue transition">Profil</a>
+                <a href="#competences" class="hover:text-engineerBlue transition">Compétences</a>
+                <a href="#formation" class="hover:text-engineerBlue transition">Formation</a>
+                <a href="#experience" class="hover:text-engineerBlue transition">Expérience</a>
+                <a href="#projets" class="hover:text-engineerBlue transition">Projets</a>
+            </div>
+            <button onclick="copyEmail(this)" class="relative bg-engineerBlue text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl hover:bg-sky-600 transition shadow-md shadow-engineerBlue/20 flex items-center gap-2">
+                <i class="fa-regular fa-copy"></i>
+                <span class="copy-label">Contact Pro</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- En-tête / Hero Section sur fond blanc -->
+    <header class="relative overflow-hidden bg-white border-b border-engineerBorder py-16 shadow-xs">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <!-- Photo de profil avec cadre technique -->
+                <div class="shrink-0 relative">
+                    <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-engineerBlue to-engineerOrange opacity-30 blur-sm"></div>
+                    <div class="relative w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden border-2 border-engineerBorder bg-slate-100 flex items-center justify-center shadow-lg">
+                        <img src="bilel.jpeg" alt="ZIDI Bilel" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 bg-engineerBlue/10 border border-engineerBlue/20 text-engineerBlue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4">
+                        <i class="fa-solid fa-microchip"></i> Recherche Stage PFE (France)
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-engineerPrimary mb-3">ZIDI Bilel</h1>
+                    <p class="text-lg md:text-xl text-slate-600 font-medium mb-6">Élève Ingénieur en Mécatronique | Conception Mécanique & Systèmes Embarqués</p>
+                    
+                    <div class="flex flex-wrap justify-center md:justify-start gap-6 text-xs md:text-sm text-slate-600">
+                        <a href="mailto:zidibilelpro@gmail.com" class="flex items-center gap-2 hover:text-engineerBlue transition">
+                            <i class="fa-solid fa-envelope text-engineerBlue"></i> zidibilelpro@gmail.com
+                        </a>
+                        <a href="tel:+21697705417" class="flex items-center gap-2 hover:text-engineerBlue transition">
+                            <i class="fa-solid fa-phone text-engineerBlue"></i> +216 97 705 417
+                        </a>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-engineerBlue"></i> Tunisie (Mobilité France)
+                        </div>
+                        <a href="https://linkedin.com/in/bilel-zidi-119b4833b" target="_blank" class="flex items-center gap-2 hover:text-engineerBlue transition">
+                            <i class="fa-brands fa-linkedin text-engineerBlue"></i> Bilel Zidi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu Principal -->
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-20">
+
+        <!-- PROFIL & LANGUES -->
+        <section id="profil" class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            <div class="md:col-span-2 bg-engineerCard p-8 rounded-2xl border border-engineerBorder shadow-sm flex flex-col justify-center">
+                <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-terminal"></i> Résumé Professionnel
+                </h2>
+                <p class="text-slate-700 leading-relaxed text-justify text-base">
+                   J’ai réalisé une chaise roulante verticalisateur innovante , constituant une solution nouvelle en Tunisie. 
+J'ai étudié, conçu et fabriqué le prototype , avec la volonté de développer des solutions technologiques à fort impact social. <strong> </strong>.
+                </p>
+            </div>
+            <div class="bg-engineerCard p-8 rounded-2xl border border-engineerBorder shadow-sm flex flex-col justify-between">
+                <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-globe"></i> Langues
+                </h2>
+                <ul class="space-y-4 text-slate-700">
+                    <li class="flex justify-between items-center border-b border-engineerBorder pb-3">
+                        <span class="font-semibold">Français</span>
+                        <span class="bg-engineerBlue/10 text-engineerBlue font-bold text-xs px-3 py-1 rounded-md border border-engineerBlue/20">B2</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <span class="font-semibold">Anglais</span>
+                        <span class="bg-engineerBlue/10 text-engineerBlue font-bold text-xs px-3 py-1 rounded-md border border-engineerBlue/20">B1</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- COMPÉTENCES TECHNIQUES -->
+        <section id="competences" class="bg-engineerCard p-8 rounded-2xl border border-engineerBorder shadow-sm">
+            <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest mb-8 flex items-center gap-2">
+                <i class="fa-solid fa-gears"></i> Stack Technique & Compétences
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-engineerBg p-5 rounded-xl border border-engineerBorder">
+                    <h3 class="font-bold text-engineerPrimary mb-2 flex items-center gap-2 text-base">
+                        <i class="fa-solid fa-cube text-engineerBlue"></i> Conception & CAO
+                    </h3>
+                    <p class="text-sm text-slate-600">SolidWorks (CSWA), SolidWorks Simulation (FEM), RDM 6, Cura</p>
+                </div>
+                <div class="bg-engineerBg p-5 rounded-xl border border-engineerBorder">
+                    <h3 class="font-bold text-engineerPrimary mb-2 flex items-center gap-2 text-base">
+                        <i class="fa-solid fa-microchip text-engineerBlue"></i> Électronique & Embarqué
+                    </h3>
+                    <p class="text-sm text-slate-600">Proteus, Arduino, ESP32, STM32</p>
+                </div>
+                <div class="bg-engineerBg p-5 rounded-xl border border-engineerBorder">
+                    <h3 class="font-bold text-engineerPrimary mb-2 flex items-center gap-2 text-base">
+                        <i class="fa-solid fa-code text-engineerBlue"></i> Programmation & Robotique
+                    </h3>
+                    <p class="text-sm text-slate-600">Python, ROS 2, Instrumentation et mesure</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMATION ACADÉMIQUE -->
+        <section id="formation" class="space-y-6">
+            <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest flex items-center gap-2">
+                <i class="fa-solid fa-graduation-cap"></i> Formation Académique
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                    <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-md border border-engineerBlue/20">2024 - 2027</span>
+                    <h3 class="font-bold text-engineerPrimary text-lg mt-3">Cycle d'Ingénieur en Mécatronique</h3>
+                    <p class="text-sm text-slate-600 mt-1">École Supérieure Privée d'Ingénieurs de Monastir</p>
+                </div>
+                <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                    <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-md border border-engineerBlue/20">2021 - 2024</span>
+                    <h3 class="font-bold text-engineerPrimary text-lg mt-3">Licence en Génie Mécanique</h3>
+                    <p class="text-sm text-slate-600 mt-1">Institut Supérieur des Études Technologiques de Ksar Hellal</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPÉRIENCE PROFESSIONNELLE -->
+        <section id="experience" class="space-y-6">
+            <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest flex items-center gap-2">
+                <i class="fa-solid fa-briefcase"></i> Expérience Professionnelle
+            </h2>
+            <div class="space-y-6 border-l-2 border-engineerBorder ml-3 pl-6">
+
+                <!-- Enova 2026 -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-engineerBlue border-4 border-white"></div>
+                    <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="font-bold text-lg text-engineerPrimary">Stage Ingénieur (2ème année) • <span class="text-engineerBlue">Enova Robotics</span></h3>
+                            <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-full border border-engineerBlue/20">07/2026 - 09/2026</span>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm">
+                            <li>Étude et conception d'une plateforme mobile sous SolidWorks en 1 mois.</li>
+                            <li>Conception et simulation du circuit électrique de la plateforme mobile sous Proteus.</li>
+                            <li>Intégration d'un système d'arrêt d'urgence conforme à la norme ISO 13850.</li>
+                            <li>Analyse et visualisation de données IMU en temps réel avec rqt_plot sous ROS 2 Humble.</li>
+                        </ul>
+                        <div class="relative h-40 mt-4 rounded-xl overflow-hidden bg-slate-900 group gallery-trigger" id="carousel-enova2026" onclick="openLightbox(['7.jpeg','6.jpeg','23.jpg','25.jpg','29.jpeg'], slideIndexes['carousel-enova2026']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="7.jpeg" alt="Stage Enova 2026 - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="6.jpeg" alt="Stage Enova 2026  - Vue 2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="23.jpg" alt="Stage Enova 2026 - Vue 3" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="25.jpg" alt="Stage Enova 2026 - Vue 4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-full h-full shrink-0">
+                                    <img src="29.jpeg" alt="Stage Enova 2026 - Vue 5" class="w-full h-full object-cover">
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2026', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2026', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="openLightbox(['7.jpeg','6.jpeg','23.jpg','25.jpg','29.jpeg'], 0)" class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-engineerBlue hover:text-sky-700 transition">
+                            <i class="fa-solid fa-images"></i> Voir les photos
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Enova 2025 -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-engineerBlue border-4 border-white"></div>
+                    <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="font-bold text-lg text-engineerPrimary">Stage Ingénieur (1ère année) • <span class="text-engineerBlue">Enova Robotics</span></h3>
+                            <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-full border border-engineerBlue/20">07/2025</span>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm">
+                            <li>Conception d'un châssis et d'un système de transmission d'un robot d'accueil autonome sous SolidWorks.</li>
+                            <li>Recherche et identification des composants électriques nécessaires à l'intégration du système.</li>
+                            <li>Validation du prototype sur le plan mécanique.</li>
+                        </ul>
+                        <div class="relative h-40 mt-4 rounded-xl overflow-hidden bg-slate-900 group gallery-trigger" id="carousel-enova2025" onclick="openLightbox(['30.jpeg'], slideIndexes['carousel-enova2025']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="30.jpeg" alt="Stage Enova 2025 - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="openLightbox(['30.jpeg'], 0)" class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-engineerBlue hover:text-sky-700 transition">
+                            <i class="fa-solid fa-images"></i> Voir les photos
+                        </button>
+                    </div>
+                </div>
+                        
+                </div>
+
+                <!-- Stage PFE Technicien -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-engineerBlue border-4 border-white"></div>
+                    <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="font-bold text-lg text-engineerPrimary">Stage Technicien (PFE)</h3>
+                            <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-full border border-engineerBlue/20">01/2024 - 06/2024</span>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm">
+                            <li>Conception en 3 mois d'une chaise roulante verticalisateur innovante sous SolidWorks.</li>
+                            <li>Recherche et sélection des composants électriques pour l'intégration système.</li>
+                            <li>Validation mécanique du prototype et fabrication/assemblage réalisé en une semaine.</li>
+                        </ul>
+                        <div class="relative h-40 mt-4 rounded-xl overflow-hidden bg-slate-900 group gallery-trigger" id="carousel- Stage PFE Technicien" onclick="openLightbox(['15.png','16.jpeg','17.jpeg','18.jpeg'], slideIndexes['carousel- Stage PFE Technicien']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="15.png" alt=" Stage PFE Technicien - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="16.jpeg" alt=" Stage PFE Technicien - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="17.jpeg" alt=" Stage PFE Technicien - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="18.jpeg" alt=" Stage PFE Technicien - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="openLightbox(['25.jpeg'], 0)" class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-engineerBlue hover:text-sky-700 transition">
+                            <i class="fa-solid fa-images"></i> Voir les photos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tach Machines -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-engineerBlue border-4 border-white"></div>
+                    <div class="bg-engineerCard p-6 rounded-2xl border border-engineerBorder shadow-sm">
+                        <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-3">
+                            <h3 class="font-bold text-lg text-engineerPrimary">Stage Technicien (2ème année) • <span class="text-engineerBlue">Tach Machines</span></h3>
+                            <span class="text-xs font-bold bg-engineerBlue/10 text-engineerBlue px-3 py-1 rounded-full border border-engineerBlue/20">01/2023 - 02/2023</span>
+                        </div>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600 text-sm">
+                            <li>Participation à la fabrication de machines de pesage et d'ensachage avec soin particulier sur la précision.</li>
+                            <li>Usinage de pièces cylindriques sur tour parallèle et pièces prismatiques sur fraiseuse.</li>
+                        </ul>
+                       <div class="relative h-40 mt-4 rounded-xl overflow-hidden bg-slate-900 group gallery-trigger" id="carousel- Tach Machines" onclick="openLightbox(['31.jpg','32.jpg','33.jpg','34.jpg'], slideIndexes['carousel- Stage PFE Technicien']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="31.jpg" alt=" Tach Machines - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="32.jpeg" alt=" Tach Machines - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="33.jpg" alt=" Tach Machines - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                  <div class="w-full h-full shrink-0">
+                                    <img src="34.jpg" alt=" Tach Machines - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-enova2025', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="openLightbox(['31.jpg','32.jpg','33.jpg','34.jpg'], 0)" class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-engineerBlue hover:text-sky-700 transition">
+                            <i class="fa-solid fa-images"></i> Voir les photos
+                        </button>
+                    </div>
+                </div>
+
+        </section>
+
+        <!-- PROJETS AVEC CARROUSELS DE GLISSEMENT -->
+        <section id="projets" class="space-y-6">
+            <h2 class="text-sm font-bold text-engineerBlue uppercase tracking-widest flex items-center gap-2">
+                <i class="fa-solid fa-diagram-project"></i> Projets Académiques & Réalisations
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Projet 1 : K-VEKTOR (Carrousel) -->
+                <div class="bg-engineerCard rounded-2xl border border-engineerBorder overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-900 group gallery-trigger" id="carousel-vektor" onclick="openLightbox(['2.jpg','13.jpeg','3.jpg','12.jpeg','14.jpeg'], slideIndexes['carousel-vektor']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="2.jpg" alt="Robot K-VEKTOR - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="13.jpeg" alt="Robot K-VEKTOR - Vue 2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="3.jpg" alt="Robot K-VEKTOR - Vue 3" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="12.jpeg" alt="Robot K-VEKTOR - Vue 4" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="14.jpeg" alt="Robot K-VEKTOR - Vue 5" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-vektor', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-vektor', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-engineerPrimary text-lg">Robot Autonome Traceur - K-VEKTOR</h3>
+                                <span class="text-xs bg-engineerOrange/10 text-engineerOrange font-bold px-2.5 py-1 rounded border border-engineerOrange/20">01/2026 - 06/2026</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Conception en équipe d'un robot autonome de marquage au sol sur ROS 2, de la modélisation 3D à la simulation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 : Support Smartphone -->
+                <div class="bg-engineerCard rounded-2xl border border-engineerBorder overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-900 group gallery-trigger" id="carousel-smartphone" onclick="openLightbox(['21.PNG','88.jpeg','888.jpeg'], slideIndexes['carousel-smartphone']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="21.PNG" alt="Support Smartphone - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="88.jpeg" alt="Support Smartphone - Vue 2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="888.jpeg" alt="Support Smartphone - Vue 3" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-smartphone', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-smartphone', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-engineerPrimary text-lg">Support Smartphone</h3>
+                                <span class="text-xs bg-engineerOrange/10 text-engineerOrange font-bold px-2.5 py-1 rounded border border-engineerOrange/20">04/2026 - 05/2026</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Conception sous SolidWorks, simulation FEM, et simulation Cura tout en respectant les contraintes de poids maximal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3 : Tige Tournante -->
+                <div class="bg-engineerCard rounded-2xl border border-engineerBorder overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-100 group gallery-trigger" onclick="openLightbox(['20.jpeg'], 0)">
+                            <img src="20.jpeg" alt="Tige tournante" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-engineerPrimary text-lg">Tige Tournante</h3>
+                                <span class="text-xs bg-engineerOrange/10 text-engineerOrange font-bold px-2.5 py-1 rounded border border-engineerOrange/20">03/2026 - 05/2026</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Conception, fabrication et assemblage d'un mécanisme à tige tournante intégré au ring en travail collaboratif.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4 : Bras Bionique (Carrousel) -->
+                <div class="bg-engineerCard rounded-2xl border border-engineerBorder overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-slate-900 group gallery-trigger" id="carousel-bionique" onclick="openLightbox(['10.jpeg','8.jpeg','4.jpg'], slideIndexes['carousel-bionique']||0)">
+                            <div class="carousel-track flex transition-transform duration-500 ease-in-out h-full w-full">
+                                <div class="w-full h-full shrink-0">
+                                    <img src="10.jpeg" alt="Bras Bionique - Vue 1" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="8.jpeg" alt="Bras Bionique - Vue 2" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-full h-full shrink-0">
+                                    <img src="4.jpg" alt="Bras Bionique - Vue 2" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition pointer-events-none">
+                                <i class="fa-solid fa-expand text-white text-2xl opacity-0 group-hover:opacity-100 transition drop-shadow"></i>
+                            </div>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-bionique', -1)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <button onclick="event.stopPropagation(); moveSlide('carousel-bionique', 1)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black text-white w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-engineerPrimary text-lg">Bras Bionique - PFA</h3>
+                                <span class="text-xs bg-engineerOrange/10 text-engineerOrange font-bold px-2.5 py-1 rounded border border-engineerOrange/20">01/2025 - 06/2025</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Modélisation et impression 3D des composants mécaniques, conception du circuit électrique, fabrication et validation du prototype.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox / Visionneuse de photos -->
+    <div id="lightbox" class="hidden fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" onclick="closeLightbox()">
+        <button onclick="event.stopPropagation(); closeLightbox()" class="absolute top-5 right-5 text-white/80 hover:text-white w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+        <button id="lightbox-prev" onclick="event.stopPropagation(); lightboxMove(-1)" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-white w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+            <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+        <button id="lightbox-next" onclick="event.stopPropagation(); lightboxMove(1)" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-white w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition">
+            <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+        <div class="max-w-5xl max-h-[85vh] w-full flex flex-col items-center gap-4" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Photo" class="max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl bg-slate-800">
+            <div id="lightbox-empty" class="hidden text-slate-300 text-sm bg-white/10 px-4 py-3 rounded-xl text-center">
+                Photos bientôt disponibles pour cette rubrique.
+            </div>
+            <span id="lightbox-counter" class="text-white/70 text-xs font-bold tracking-wider"></span>
+        </div>
+    </div>
+
+    <!-- Toast de confirmation copie email -->
+    <div id="copy-toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] bg-slate-900 text-white text-sm font-semibold px-5 py-3 rounded-xl shadow-2xl flex items-center gap-2 border border-slate-700">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span>Adresse email copiée : zidibilelpro@gmail.com</span>
+    </div>
+
+    <!-- Script JavaScript pour les carrousels de glissement et la visionneuse -->
+    <script>
+        const slideIndexes = {};
+
+        function moveSlide(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const track = carousel.querySelector('.carousel-track');
+            const totalSlides = track.children.length;
+
+            if (!(carouselId in slideIndexes)) {
+                slideIndexes[carouselId] = 0;
+            }
+
+            slideIndexes[carouselId] += direction;
+
+            if (slideIndexes[carouselId] >= totalSlides) {
+                slideIndexes[carouselId] = 0;
+            } else if (slideIndexes[carouselId] < 0) {
+                slideIndexes[carouselId] = totalSlides - 1;
+            }
+
+            track.style.transform = `translateX(-${slideIndexes[carouselId] * 100}%)`;
+        }
+
+        // --- Copier l'adresse email (bouton Contact Pro) ---
+        function copyEmail(btn) {
+            const email = 'zidibilelpro@gmail.com';
+
+            function showToast() {
+                const toast = document.getElementById('copy-toast');
+                toast.classList.remove('hidden');
+                clearTimeout(window.__toastTimer);
+                window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 2500);
+
+                if (btn) {
+                    const label = btn.querySelector('.copy-label');
+                    const original = label ? label.textContent : null;
+                    if (label) label.textContent = 'Copié !';
+                    setTimeout(() => { if (label) label.textContent = original; }, 2000);
+                }
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(email).then(showToast).catch(() => fallbackCopy(email, showToast));
+            } else {
+                fallbackCopy(email, showToast);
+            }
+        }
+
+        function fallbackCopy(text, callback) {
+            const input = document.createElement('textarea');
+            input.value = text;
+            input.style.position = 'fixed';
+            input.style.opacity = '0';
+            document.body.appendChild(input);
+            input.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(input);
+            if (callback) callback();
+        }
+
+        // --- Visionneuse de photos (lightbox) ---
+        let currentGallery = [];
+        let currentGalleryIndex = 0;
+
+        function openLightbox(images, startIndex) {
+            currentGallery = images || [];
+            currentGalleryIndex = startIndex || 0;
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxMove(direction) {
+            if (!currentGallery.length) return;
+            currentGalleryIndex = (currentGalleryIndex + direction + currentGallery.length) % currentGallery.length;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const img = document.getElementById('lightbox-img');
+            const empty = document.getElementById('lightbox-empty');
+            const counter = document.getElementById('lightbox-counter');
+            const prev = document.getElementById('lightbox-prev');
+            const next = document.getElementById('lightbox-next');
+            const hasImages = currentGallery.length > 0;
+
+            img.classList.toggle('hidden', !hasImages);
+            empty.classList.toggle('hidden', hasImages);
+            prev.style.display = currentGallery.length > 1 ? 'flex' : 'none';
+            next.style.display = currentGallery.length > 1 ? 'flex' : 'none';
+
+            if (hasImages) {
+                img.src = currentGallery[currentGalleryIndex];
+                counter.textContent = (currentGalleryIndex + 1) + ' / ' + currentGallery.length;
+            } else {
+                counter.textContent = '';
+            }
+        }
+
+        // Si une image n'existe pas encore sur le serveur, on évite l'icône cassée
+        document.addEventListener('error', function(e) {
+            if (e.target && e.target.id === 'lightbox-img') {
+                e.target.classList.add('hidden');
+                document.getElementById('lightbox-empty').classList.remove('hidden');
+            }
+        }, true);
+
+        document.addEventListener('keydown', function(e) {
+            const lb = document.getElementById('lightbox');
+            if (lb.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') lightboxMove(1);
+            if (e.key === 'ArrowLeft') lightboxMove(-1);
+        });
+    </script>
+
+
+    <!-- Assistant IA de Bilel : fenêtre intégrée -->
+    <style>
+      #bilel-ai-launcher{position:fixed;right:24px;bottom:24px;z-index:9999;border:0;border-radius:999px;
+        padding:14px 20px;background:#0284c7;color:#fff;font:700 14px system-ui,sans-serif;
+        box-shadow:0 12px 35px rgba(2,132,199,.3);cursor:pointer}
+      #bilel-ai-launcher:hover{background:#0369a1;transform:translateY(-2px)}
+      #bilel-ai-panel{display:none;position:fixed;z-index:9998;right:24px;bottom:86px;
+        width:min(430px,calc(100vw - 32px));height:min(680px,calc(100dvh - 112px));
+        background:#fff;border:1px solid #dbe2ea;border-radius:18px;overflow:hidden;
+        box-shadow:0 22px 70px rgba(15,23,42,.28)}
+      #bilel-ai-panel.open{display:flex;flex-direction:column}
+      #bilel-ai-top{height:54px;flex:0 0 54px;background:#0f172a;color:white;
+        display:flex;align-items:center;justify-content:space-between;padding:0 14px;
+        font:600 14px system-ui,sans-serif}
+      #bilel-ai-close{border:0;background:rgba(255,255,255,.12);color:white;
+        width:32px;height:32px;border-radius:9px;font-size:20px;cursor:pointer}
+      #bilel-ai-frame{width:100%;height:calc(100% - 54px);border:0;background:#f6f7f9}
+      @media(max-width:520px){#bilel-ai-launcher{right:14px;bottom:14px}
+        #bilel-ai-panel{right:8px;bottom:72px;width:calc(100vw - 16px);height:calc(100dvh - 88px)}}
+    </style>
+    <section id="bilel-ai-panel" role="dialog" aria-label="Assistant IA de Bilel">
+      <div id="bilel-ai-top">
+        <span>🤖 Assistant IA de Bilel Zidi</span>
+        <button id="bilel-ai-close" type="button" aria-label="Fermer">×</button>
+      </div>
+      <iframe id="bilel-ai-frame"
+        src="https://claude.ai/artifact/C5ijHJciNLSphquyA95iXW"
+        title="Assistant IA de Bilel Zidi"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="clipboard-read; clipboard-write"></iframe>
+    </section>
+    <button id="bilel-ai-launcher" type="button" aria-controls="bilel-ai-panel" aria-expanded="false">
+      🤖 Discuter avec mon IA
+    </button>
+    <script>
+      (() => {
+        const button=document.getElementById('bilel-ai-launcher');
+        const panel=document.getElementById('bilel-ai-panel');
+        const close=document.getElementById('bilel-ai-close');
+        const setOpen=(open)=>{
+          panel.classList.toggle('open',open);
+          button.setAttribute('aria-expanded',String(open));
+          button.textContent=open?'✕ Fermer l’assistant':'🤖 Discuter avec mon IA';
+        };
+        button.addEventListener('click',()=>setOpen(!panel.classList.contains('open')));
+        close.addEventListener('click',()=>setOpen(false));
+        document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+      })();
+    </script>
+
+    <!-- Pied de page (Barre du dessous) assortie en bleu marine -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-8 mt-20 text-center text-sm text-slate-400">
+        <p>© 2026 - ZIDI Bilel • Élève Ingénieur en Mécatronique</p>
+    </footer>
+
+</body>
+</html>
